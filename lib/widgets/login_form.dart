@@ -77,7 +77,7 @@ class MyLoginForm extends StatelessWidget {
                         password.clear();
                         return;
                       }
-                      Navigator.pushNamed(context, 'home');
+                      Navigator.pushNamed(context, 'splash');
                     },
                     style: AppTheme.lightTheme.elevatedButtonTheme.style,
                     child: SizedBox(
