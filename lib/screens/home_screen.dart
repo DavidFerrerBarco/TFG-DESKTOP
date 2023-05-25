@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/constants/constants.dart';
 import '../widgets/widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,14 +10,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String lockedOption = 'EMPRESAS';
+  String lockedOption = listaventanas[0];
 
   void onLockedChange(String newLocked){
-    setState(() {
-      lockedOption = newLocked;
-    });
-    if(lockedOption == 'CERRAR SESIÓN'){
+    if(newLocked == listaventanas.last){
       Navigator.pushReplacementNamed(context, 'login');
+    }
+    else{
+      setState(() {
+        lockedOption = newLocked;
+      });
     }
   }
 

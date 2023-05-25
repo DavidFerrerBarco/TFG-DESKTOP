@@ -1,9 +1,13 @@
-export 'package:my_desktop_app/widgets/home/content/home_content.dart';
-export 'package:my_desktop_app/widgets/home/drawer/home_drawer_item.dart';
-export 'package:my_desktop_app/widgets/home/drawer/home_drawer_profile_data.dart';
 export 'package:my_desktop_app/widgets/custom_icon_avatar.dart';
 export 'package:my_desktop_app/widgets/custom_input_field.dart';
+export 'package:my_desktop_app/widgets/home/content/home_button_add.dart';
+export 'package:my_desktop_app/widgets/home/content/home_content_button.dart';
+export 'package:my_desktop_app/widgets/home/content/home_content_empresas.dart';
+export 'package:my_desktop_app/widgets/home/content/home_content_title.dart';
+export 'package:my_desktop_app/widgets/home/content/home_content.dart';
 export 'package:my_desktop_app/widgets/home/drawer/home_drawer_content.dart';
+export 'package:my_desktop_app/widgets/home/drawer/home_drawer_item.dart';
+export 'package:my_desktop_app/widgets/home/drawer/home_drawer_profile_data.dart';
 export 'package:my_desktop_app/widgets/home/drawer/home_drawer.dart';
 export 'package:my_desktop_app/widgets/login/login_container.dart';
 export 'package:my_desktop_app/widgets/login/login_form.dart';

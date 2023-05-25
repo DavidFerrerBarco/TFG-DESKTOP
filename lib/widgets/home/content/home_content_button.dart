@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/theme/app_theme.dart';
 
-class HomeDrawerItem extends StatefulWidget {
+class HomeContentButton extends StatefulWidget {
 
   final String content;
   final Color color;
   final Color borderColor;
-  final String lockedOption;
-  final Function onLockedChange;
   final double offsetX;
   final double offsetY;
+  final double width;
 
 
-  const HomeDrawerItem({
+  const HomeContentButton({
     super.key, 
     required this.content, 
     required this.color, 
-    required this.borderColor, 
-    required this.lockedOption, 
-    required this.onLockedChange, 
+    required this.borderColor,
     required this.offsetX, 
     required this.offsetY,
+    required this.width,
   });
 
   @override
-  State<HomeDrawerItem> createState() => _HomeDrawerItemState();
+  State<HomeContentButton> createState() => _HomeContentButtonState();
 }
 
-class _HomeDrawerItemState extends State<HomeDrawerItem> {
+class _HomeContentButtonState extends State<HomeContentButton> {
 
   bool isHovered = false;
   void onHovered(bool hovered) => setState(() {
@@ -37,7 +36,7 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
   Widget build(BuildContext context) {
 
     Offset setOffsetValue(){
-      return widget.content == widget.lockedOption || isHovered
+      return isHovered
         ? const Offset(0, 0)
         : Offset(widget.offsetX, widget.offsetY);
     }
@@ -45,12 +44,13 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
     Offset offset = setOffsetValue();
 
     return TextButton(
-      onPressed: () => widget.onLockedChange(widget.content),
+      onPressed: () {},
       child: Container(
         height: 60,
+        width: widget.width,
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.white,
+            color: AppTheme.shadowGreen,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(20),

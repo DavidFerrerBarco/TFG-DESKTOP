@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/constants/constants.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import '../../widget.dart';
 
@@ -27,38 +28,46 @@ class HomeDrawerContent extends StatelessWidget {
               direction: Axis.vertical,
               children: [
                 HomeDrawerItem(
-                  content: 'EMPRESAS', 
+                  content: listaventanas[0], 
                   color: AppTheme.primary,
                   borderColor: AppTheme.shadowGreen,
                   lockedOption: lockedOption,
                   onLockedChange: onLockedChange,
+                  offsetX: 6,
+                  offsetY: -6,
                 ),
                 const SizedBox(height: 30),
                 HomeDrawerItem(
-                  content: 'NOTICIAS', 
+                  content: listaventanas[1], 
                   color: AppTheme.primary,
                   borderColor: AppTheme.shadowGreen,
                   lockedOption: lockedOption,
                   onLockedChange: onLockedChange,
+                  offsetX: 6,
+                  offsetY: -6,
                 ),
                 const SizedBox(height: 30),
                 HomeDrawerItem(
-                  content: 'ESTADÍSTICAS', 
+                  content: listaventanas[2], 
                   color: AppTheme.primary,
                   borderColor: AppTheme.shadowGreen,
                   lockedOption: lockedOption,
                   onLockedChange: onLockedChange,
+                  offsetX: 6,
+                  offsetY: -6,
                 ),
               ],
             ),
           ),
           const Spacer(),
           HomeDrawerItem(
-            content: 'CERRAR SESIÓN', 
+            content: listaventanas.last, 
             color: AppTheme.redColor,
             borderColor: AppTheme.redColor,
             lockedOption: lockedOption,
             onLockedChange: onLockedChange,
+                  offsetX: 6,
+                  offsetY: -6,
           ),
         ],
       ),
