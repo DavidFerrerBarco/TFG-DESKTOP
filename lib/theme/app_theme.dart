@@ -5,6 +5,7 @@ class AppTheme {
   static const Color secondary = Color(0xFF008B76);
   static const Color backgroundGreen = Color.fromARGB(200, 56, 255, 175);
   static const Color shadowGreen = Color.fromARGB(255, 44, 184, 128);
+  static const Color redColor = Color.fromARGB(255, 167, 28, 28);
   static final ThemeData lightTheme = ThemeData.light().copyWith(
     //Color primario
     primaryColor: primary,

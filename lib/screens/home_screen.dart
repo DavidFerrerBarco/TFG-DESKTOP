@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:my_desktop_app/theme/app_theme.dart';
+import '../widgets/widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String lockedOption = 'EMPRESAS';
+
+  void onLockedChange(String newLocked){
+    setState(() {
+      lockedOption = newLocked;
+    });
+    if(lockedOption == 'CERRAR SESIÓN'){
+      Navigator.pushReplacementNamed(context, 'login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: const [ 
-          Text('HOME')
-        ], 
-        backgroundColor: AppTheme.primary,
+      backgroundColor: Colors.white,
+      body: Padding(
+      padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
+      child:Row(
+          children: [
+            HomeDrawer(
+              lockedOption: lockedOption,
+              onLockedChange: onLockedChange,
+            ),
+            HomeContent(
+              lockedOption: lockedOption,
+            )
+          ],
+        ),   
       ),
     );
   }

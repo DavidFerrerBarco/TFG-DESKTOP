@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
-import 'widget.dart';
+import '../widget.dart';
 
 class MyLoginForm extends StatelessWidget {
   const MyLoginForm({
