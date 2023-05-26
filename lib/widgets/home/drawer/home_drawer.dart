@@ -5,11 +5,11 @@ import '../../widget.dart';
 
 class HomeDrawer extends StatelessWidget {
   final String lockedOption;
-  final Function onLockedChange;
+  final Function onLockedChanged;
   const HomeDrawer({
     super.key, 
     required this.lockedOption, 
-    required this.onLockedChange,
+    required this.onLockedChanged,
   });
 
   @override
@@ -44,7 +44,7 @@ class HomeDrawer extends StatelessWidget {
       ),
       child: HomeDrawerContent(
         lockedOption: lockedOption,
-        onLockedChange: onLockedChange,
+        onLockedChange: onLockedChanged,
       ),
     );
         

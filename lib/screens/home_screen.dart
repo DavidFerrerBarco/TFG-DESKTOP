@@ -1,46 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/constants/constants.dart';
+import 'package:my_desktop_app/provider/provider.dart';
+import 'package:provider/provider.dart';
 import '../widgets/widget.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String lockedOption = listaventanas[0];
-
-  void onLockedChange(String newLocked){
-    if(newLocked == listaventanas.last){
-      Navigator.pushReplacementNamed(context, 'login');
-    }
-    else{
-      setState(() {
-        lockedOption = newLocked;
-      });
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Padding(
-      padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
-      child:Row(
-          children: [
-            HomeDrawer(
-              lockedOption: lockedOption,
-              onLockedChange: onLockedChange,
+
+    final HomeProvider homeProvider = Provider.of<HomeProvider>(context);
+
+    void onLockedChanged(String newOption) {
+      homeProvider.onLockedChanged(newOption);
+      if(newOption ==listaventanas.last){
+        Navigator.pushReplacementNamed(context, 'login');
+        homeProvider.onLockedChanged(listaventanas[0]);
+      }
+    }
+
+    return StreamBuilder(
+      stream: homeProvider.lockedOption,
+      initialData: listaventanas[0],
+      builder: (context, snapshot) {
+        if(snapshot.hasData){
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: Padding(
+            padding: const EdgeInsets.only(left: 30, top: 30, bottom: 30),
+            child: Row(
+                children: [
+                  HomeDrawer(
+                    lockedOption: snapshot.data!,
+                    onLockedChanged: onLockedChanged,
+                  ),
+                  HomeContent(
+                    lockedOption: snapshot.data!,
+                  ),
+                ],
+              ),   
             ),
-            HomeContent(
-              lockedOption: lockedOption,
-            )
-          ],
-        ),   
-      ),
+          );
+        }else{
+          return const Scaffold();
+        }
+      },
     );
   }
 }

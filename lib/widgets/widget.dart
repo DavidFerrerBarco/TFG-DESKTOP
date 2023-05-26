@@ -9,5 +9,6 @@ export 'package:my_desktop_app/widgets/home/drawer/home_drawer_content.dart';
 export 'package:my_desktop_app/widgets/home/drawer/home_drawer_item.dart';
 export 'package:my_desktop_app/widgets/home/drawer/home_drawer_profile_data.dart';
 export 'package:my_desktop_app/widgets/home/drawer/home_drawer.dart';
+export 'package:my_desktop_app/widgets/home/grid/grid_data_companies.dart';
 export 'package:my_desktop_app/widgets/login/login_container.dart';
 export 'package:my_desktop_app/widgets/login/login_form.dart';
