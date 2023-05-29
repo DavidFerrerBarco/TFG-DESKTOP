@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/constants/constants.dart';
-import 'package:my_desktop_app/models/company.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
-import 'package:provider/provider.dart';
-class HomeContentEmpresas extends StatelessWidget {
-  const HomeContentEmpresas({
+
+import '../../../../models/models.dart';
+
+class HomeContentEmpresaData extends StatelessWidget {
+
+  final HomeProvider homeProvider;
+  final Function onOptionChanged; 
+
+  const HomeContentEmpresaData({
     super.key,
+    required this.homeProvider,
+    required this.onOptionChanged,
   });
 
   @override
   Widget build(BuildContext context) {
-
-    final HomeProvider homeProvider = Provider.of<HomeProvider>(context);
-
     return StreamBuilder(
       stream: homeProvider.companiesData,
       initialData: const <Company>[],
@@ -39,7 +43,11 @@ class HomeContentEmpresas extends StatelessWidget {
 
               return Column(
                 children: [
-                  const HomeButtonAdd(),
+                  HomeButtonOption(
+                    onOptionChanged: onOptionChanged,
+                    content: 'Añadir Empresa',
+                    option: listavistaempresa[1],
+                  ),
                   GridDataCompanies(companyDataSource: companyDataSource),
                 ],
               );

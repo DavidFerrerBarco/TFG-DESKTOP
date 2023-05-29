@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
       if(newOption ==listaventanas.last){
         Navigator.pushReplacementNamed(context, 'login');
         homeProvider.onLockedChanged(listaventanas[0]);
+        homeProvider.onLockedCompanyChanged(listavistaempresa[0]);
       }
     }
 

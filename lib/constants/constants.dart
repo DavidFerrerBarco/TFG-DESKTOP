@@ -7,6 +7,11 @@ final List<String> listaventanas = [
   'CERRAR SESIÓN',
 ];
 
+final List<String> listavistaempresa = [
+  'DATA',
+  'CREATE'
+];
+
 const baseUrl = '10.0.1.198:3000';
 
 final List<Company> companiesDefault = <Company>[

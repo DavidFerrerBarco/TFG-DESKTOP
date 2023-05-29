@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
 // ignore: must_be_immutable
@@ -11,9 +12,11 @@ class CustomInputField extends StatefulWidget {
   final IconData? suffixIcon;
   final TextInputType? keyboardType;
   bool isPassword;
-
+  final bool? allowPassword;
+  final List<TextInputFormatter>? inputFormatters;
+  final Function? onPressed;
   final String formProperty;
-  final Map<String, String> formValues;
+  final Map<String, dynamic> formValues;
 
   CustomInputField({
     super.key,
@@ -27,6 +30,9 @@ class CustomInputField extends StatefulWidget {
     required this.formProperty,
     required this.formValues, 
     required this.controller,
+    this.inputFormatters,
+    this.onPressed,
+    this.allowPassword = false,
   });
 
   @override
@@ -68,7 +74,16 @@ class _CustomInputFieldState extends State<CustomInputField> {
         hintText: widget.hintText,
         labelText: widget.labelText,
         helperText: widget.helperText,
-        suffixIcon: widget.suffixIcon == null ? null : IconButton(onPressed: () => onPasswordVisualize(), icon: Icon(widget.suffixIcon), splashRadius: 20, ),
+        suffixIcon: widget.suffixIcon == null ? null : IconButton(
+          onPressed: (){
+            if(widget.allowPassword == false){
+              widget.onPressed!();
+            }else{
+              onPasswordVisualize();
+            }
+          }, 
+          icon: Icon(widget.suffixIcon), splashRadius: 20, 
+        ),
         suffixIconColor: AppTheme.primary,
         prefixIcon: widget.prefixIcon == null ? null : Icon(widget.prefixIcon),
         prefixIconColor: AppTheme.primary,
@@ -79,6 +94,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
         fillColor: theme.fillColor,
         hoverColor: Colors.white,
       ),
+      inputFormatters: widget.inputFormatters,
     );
   }
 }

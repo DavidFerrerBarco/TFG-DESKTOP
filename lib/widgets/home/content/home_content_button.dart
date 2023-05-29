@@ -9,7 +9,8 @@ class HomeContentButton extends StatefulWidget {
   final double offsetX;
   final double offsetY;
   final double width;
-
+  final Function onOptionChanged;
+  final String option;
 
   const HomeContentButton({
     super.key, 
@@ -19,6 +20,8 @@ class HomeContentButton extends StatefulWidget {
     required this.offsetX, 
     required this.offsetY,
     required this.width,
+    required this.onOptionChanged,
+    required this.option,
   });
 
   @override
@@ -44,7 +47,7 @@ class _HomeContentButtonState extends State<HomeContentButton> {
     Offset offset = setOffsetValue();
 
     return TextButton(
-      onPressed: () {},
+      onPressed: () => widget.onOptionChanged(widget.option),
       child: Container(
         height: 60,
         width: widget.width,

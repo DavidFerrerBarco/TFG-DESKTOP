@@ -15,7 +15,6 @@ class LoginScreen extends StatelessWidget {
     var password = TextEditingController();
 
     Size size = MediaQuery.of(context).size;
-    bool isPassword = true;
 
     return Scaffold(
       backgroundColor: AppTheme.backgroundGreen,
@@ -86,11 +85,9 @@ class LoginScreen extends StatelessWidget {
                   dni: dni,
                   password: password,
                   size: size,
-                  isPassword: isPassword,
                 ),
               ],
             ),
-            
           ]
         ),
       ),

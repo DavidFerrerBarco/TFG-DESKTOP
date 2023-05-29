@@ -10,7 +10,6 @@ class MyLoginForm extends StatelessWidget {
     required this.dni,
     required this.formValues,
     required this.password,
-    required this.isPassword, 
     required this.size,
   });
 
@@ -18,11 +17,11 @@ class MyLoginForm extends StatelessWidget {
   final TextEditingController dni;
   final Map<String, String> formValues;
   final TextEditingController password;
-  final bool isPassword;
   final Size size;
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +67,8 @@ class MyLoginForm extends StatelessWidget {
                     hintText: 'Password',
                     formProperty: 'password',
                     formValues: formValues,
-                    isPassword: isPassword,
+                    isPassword: true,
+                    allowPassword: true,
                   ),
                   ElevatedButton(
                     onPressed: () {

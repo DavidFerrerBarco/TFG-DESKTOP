@@ -9,7 +9,6 @@ class LoginContainer extends StatelessWidget {
     required this.dni,
     required this.formValues,
     required this.password,
-    required this.isPassword, 
     required this.size,
   });
 
@@ -17,7 +16,6 @@ class LoginContainer extends StatelessWidget {
   final TextEditingController dni;
   final Map<String, String> formValues;
   final TextEditingController password;
-  final bool isPassword;
   final Size size;
 
   @override
@@ -46,7 +44,6 @@ class LoginContainer extends StatelessWidget {
         dni: dni,
         password: password,
         size: size,
-        isPassword: isPassword,
       ),
     );
   }
