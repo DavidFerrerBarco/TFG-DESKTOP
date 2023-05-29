@@ -6,6 +6,7 @@ import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class HomeContentEmpresaAdd extends StatelessWidget {
 
   final HomeProvider homeProvider;
@@ -16,8 +17,6 @@ class HomeContentEmpresaAdd extends StatelessWidget {
     required this.homeProvider,
     required this.onOptionChanged,
   });
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class HomeContentEmpresaAdd extends StatelessWidget {
       address.value = TextEditingValue( text: data );
     });
 
-    return SingleChildScrollView(
+    return  SingleChildScrollView(
       child: Column(
         children: [
           HomeButtonOption(
@@ -148,6 +147,8 @@ class HomeContentEmpresaAdd extends StatelessWidget {
                           if(value){
                             homeProvider.resetCompanyForm();
                             onOptionChanged(listavistaempresa[0]);
+                          }else{
+                            
                           }
                         });
                     },

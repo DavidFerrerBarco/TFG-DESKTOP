@@ -48,6 +48,7 @@ class HomeProvider extends ChangeNotifier{
     _listahoras.removeAt(_listahoras.indexOf(hours));
     notifyListeners();
   }
+  
   // ------------------------------------------
   String _companyname = '';
 
@@ -75,6 +76,9 @@ class HomeProvider extends ChangeNotifier{
     _companyaddress = '';
     _listahoras = <int>[];
   }
+  // ------------------------------------------
+  bool _alertError = false;
+
 
   // ------------------------------------------
   Stream<List<Company>> get companiesData async* {
@@ -95,6 +99,7 @@ class HomeProvider extends ChangeNotifier{
   }
 
   // ------------------------------------------
+
   Future<bool> postCompany( ) async {
     var url = Uri.http(baseUrl, 'api/company');
     try{
