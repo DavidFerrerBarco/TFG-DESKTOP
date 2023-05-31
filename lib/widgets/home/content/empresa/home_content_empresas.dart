@@ -3,6 +3,7 @@ import 'package:my_desktop_app/constants/constants.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
 import 'package:provider/provider.dart';
+
 class HomeContentEmpresas extends StatelessWidget {
   const HomeContentEmpresas({
     super.key,
@@ -10,39 +11,35 @@ class HomeContentEmpresas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final HomeProvider homeProvider = Provider.of<HomeProvider>(context);
 
-    void onCompanyChanged(String newCompanyOption){
+    void onCompanyChanged(String newCompanyOption) {
       homeProvider.onLockedCompanyChanged(newCompanyOption);
     }
 
-    Widget companyView(String vista){
-      if(vista == listavistaempresa[0])
-      {
+    Widget companyView(String vista) {
+      if (vista == listavistaempresa[0]) {
         return HomeContentEmpresaData(
           homeProvider: homeProvider,
           onOptionChanged: onCompanyChanged,
         );
-      }else if (vista == listavistaempresa[1]){
-        return HomeContentEmpresaAdd(
+      } else if (vista == listavistaempresa[1]) {
+        return HomeContentEmpresaAddPut(
           homeProvider: homeProvider,
           onOptionChanged: onCompanyChanged,
         );
-      }else{
+      } else {
         return Container(color: Colors.black);
       }
-        
     }
 
     return StreamBuilder(
       stream: homeProvider.vistaEmpresa,
       initialData: listavistaempresa[0],
       builder: (context, snapshot) {
-        if(snapshot.hasData)
-        {
+        if (snapshot.hasData) {
           return Container(child: companyView(snapshot.data!));
-        }else{
+        } else {
           return Container();
         }
       },

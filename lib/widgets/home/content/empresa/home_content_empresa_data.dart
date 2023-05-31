@@ -7,9 +7,8 @@ import 'package:my_desktop_app/widgets/widget.dart';
 import '../../../../models/models.dart';
 
 class HomeContentEmpresaData extends StatelessWidget {
-
   final HomeProvider homeProvider;
-  final Function onOptionChanged; 
+  final Function onOptionChanged;
 
   const HomeContentEmpresaData({
     super.key,
@@ -23,40 +22,44 @@ class HomeContentEmpresaData extends StatelessWidget {
       stream: homeProvider.companiesData,
       initialData: const <Company>[],
       builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.done && snapshot.hasData)
-        {
-            if(snapshot.data! == companiesDefault)
-            {
-              return const Center(
-                child: Text(
-                  'ERROR EN LA RED :(', 
-                  style: TextStyle(
-                    color: AppTheme.primary,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                  ),
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.hasData) {
+          if (snapshot.data! == companiesDefault) {
+            return const Center(
+              child: Text(
+                'ERROR EN LA RED :(',
+                style: TextStyle(
+                  color: AppTheme.primary,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
                 ),
-              );
-            }
-            else{
-              CompanyDataSource companyDataSource = CompanyDataSource(companyData: snapshot.data!);
+              ),
+            );
+          } else {
+            CompanyDataSource companyDataSource = CompanyDataSource(
+              companyData: snapshot.data!,
+              homeProvider: homeProvider,
+              onOptionChanged: onOptionChanged,
+            );
 
-              return Column(
-                children: [
-                  HomeButtonOption(
-                    onOptionChanged: onOptionChanged,
-                    content: 'Añadir Empresa',
-                    option: listavistaempresa[1],
-                  ),
-                  GridDataCompanies(companyDataSource: companyDataSource),
-                ],
-              );
-            }
+            return Column(
+              children: [
+                HomeButtonOption(
+                  onOptionChanged: onOptionChanged,
+                  content: 'Añadir Empresa',
+                  option: listavistaempresa[1],
+                  homeProvider: homeProvider,
+                ),
+                GridDataCompanies(companyDataSource: companyDataSource),
+              ],
+            );
+          }
+        } else {
+          return const Center(
+              child: CircularProgressIndicator(
+            color: AppTheme.primary,
+          ));
         }
-        else{
-          return const Center(child: CircularProgressIndicator(color: AppTheme.primary,));
-        }
-        
       },
     );
   }

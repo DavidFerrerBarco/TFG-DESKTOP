@@ -9,10 +9,12 @@ final List<String> listaventanas = [
 
 final List<String> listavistaempresa = [
   'DATA',
-  'CREATE'
+  'CREATE_EDIT',
 ];
 
-const baseUrl = '10.0.1.198:3000';
+const casa = '192.168.0.11';
+const trabajo = '10.0.1.198';
+const baseUrl = '$casa:3000';
 
 final List<Company> companiesDefault = <Company>[
   Company(id: '', name: '', address: '', contractTypes: <int>[], v: 0),
