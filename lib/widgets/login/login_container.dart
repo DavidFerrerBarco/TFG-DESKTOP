@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/provider/login_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
 
@@ -10,6 +11,7 @@ class LoginContainer extends StatelessWidget {
     required this.formValues,
     required this.password,
     required this.size,
+    required this.loginProvider,
   });
 
   final GlobalKey<FormState> myFormKey;
@@ -17,6 +19,7 @@ class LoginContainer extends StatelessWidget {
   final Map<String, String> formValues;
   final TextEditingController password;
   final Size size;
+  final LoginProvider loginProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +27,26 @@ class LoginContainer extends StatelessWidget {
       width: 500,
       height: 500,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(50),
-        border: Border.all(
-          color: AppTheme.primary,
-          width: 2,
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: AppTheme.shadowGreen,
-            blurRadius: 2,
-            offset: Offset(10,10),
-          )
-        ]
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(50),
+          border: Border.all(
+            color: AppTheme.primary,
+            width: 2,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: AppTheme.shadowGreen,
+              blurRadius: 2,
+              offset: Offset(10, 10),
+            )
+          ]),
       child: MyLoginForm(
         myFormKey: myFormKey,
         formValues: formValues,
         dni: dni,
         password: password,
         size: size,
+        loginProvider: loginProvider,
       ),
     );
   }

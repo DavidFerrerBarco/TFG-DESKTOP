@@ -1,35 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/provider/login_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     final GlobalKey<FormState> myFormKey = GlobalKey<FormState>();
-    final Map<String,String> formValues = {'dni': '', 'password':''};
+    final Map<String, String> formValues = {'dni': '', 'password': ''};
 
     var dni = TextEditingController();
     var password = TextEditingController();
 
     Size size = MediaQuery.of(context).size;
 
+    LoginProvider loginProvider = Provider.of<LoginProvider>(context);
+
     return Scaffold(
       backgroundColor: AppTheme.backgroundGreen,
-      body:Center(
-        child: Stack(
-          alignment: AlignmentDirectional.center,
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: size.height/5,
-                  child: const Center(
-                    child: Text(
-                      'EMPLOYEE DIARY',
-                      style: TextStyle(
+      body: Center(
+        child: Stack(alignment: AlignmentDirectional.center, children: [
+          Column(
+            children: [
+              SizedBox(
+                height: size.height / 5,
+                child: const Center(
+                  child: Text(
+                    'EMPLOYEE DIARY',
+                    style: TextStyle(
                         fontSize: 60,
                         fontStyle: FontStyle.italic,
                         fontWeight: FontWeight.bold,
@@ -74,22 +75,21 @@ class LoginScreen extends StatelessWidget {
                             offset: Offset(1, 10),
                             color: AppTheme.shadowGreen,
                           ),
-                        ]
-                      ),
-                    ),
+                        ]),
                   ),
                 ),
-                LoginContainer(
-                  myFormKey: myFormKey,
-                  formValues: formValues,
-                  dni: dni,
-                  password: password,
-                  size: size,
-                ),
-              ],
-            ),
-          ]
-        ),
+              ),
+              LoginContainer(
+                myFormKey: myFormKey,
+                formValues: formValues,
+                dni: dni,
+                password: password,
+                size: size,
+                loginProvider: loginProvider,
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }

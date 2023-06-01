@@ -47,7 +47,10 @@ class GridDataCompanies extends StatelessWidget {
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text('Dirección', overflow: TextOverflow.ellipsis),
+              child: const Text(
+                'Dirección',
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
           ),
           GridColumn(
@@ -60,14 +63,15 @@ class GridDataCompanies extends StatelessWidget {
             allowSorting: false,
           ),
           GridColumn(
-              columnName: 'edit',
-              label: Container(
-                padding: const EdgeInsets.all(8.0),
-                alignment: Alignment.center,
-                child: const Text(''),
-              ),
-              allowSorting: false,
-              columnWidthMode: ColumnWidthMode.fill),
+            columnName: 'edit',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text(''),
+            ),
+            allowSorting: false,
+            columnWidthMode: ColumnWidthMode.fill,
+          ),
         ],
       ),
     );
@@ -77,7 +81,7 @@ class GridDataCompanies extends StatelessWidget {
 class CompanyDataSource extends DataGridSource {
   CompanyDataSource({
     required List<Company> companyData,
-    required HomeProvider homeProvider,
+    required HomeCompanyProvider homeProvider,
     required Function onOptionChanged,
   }) {
     _homeProvider = homeProvider;
@@ -110,7 +114,7 @@ class CompanyDataSource extends DataGridSource {
 
   List<DataGridRow> _companyData = [];
 
-  late HomeProvider _homeProvider;
+  late HomeCompanyProvider _homeProvider;
 
   late Function _onOptionChanged;
 
@@ -122,46 +126,50 @@ class CompanyDataSource extends DataGridSource {
     return DataGridRowAdapter(
         cells: row.getCells().map<Widget>((e) {
       return Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(8.0),
-          child: e.columnName == 'edit'
-              ? Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        _homeProvider.setId(row.getCells()[0].value);
-                        _homeProvider.addCompanyName(row.getCells()[1].value);
-                        _homeProvider
-                            .addCompanyAddress(row.getCells()[2].value);
-                        List<int> lista = row.getCells()[3].value;
-                        _homeProvider.isCreate(false);
-                        _homeProvider.addAnHourList(lista);
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(8.0),
+        child: e.columnName == 'edit'
+            ? Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      _homeProvider.setId(row.getCells()[0].value);
+                      _homeProvider.addCompanyName(row.getCells()[1].value);
+                      _homeProvider.addCompanyAddress(row.getCells()[2].value);
+                      List<int> lista = row.getCells()[3].value;
+                      _homeProvider.isCreate(false);
+                      _homeProvider.addAnHourList(lista);
 
-                        _onOptionChanged(listavistaempresa[1]);
-                      },
-                      icon: const Icon(Icons.edit, color: AppTheme.primary),
+                      _onOptionChanged(listavistaempresa[1]);
+                    },
+                    icon: const Icon(Icons.edit, color: AppTheme.primary),
+                  ),
+                  const SizedBox(width: 5),
+                  IconButton(
+                    onPressed: () {
+                      _homeProvider
+                          .deleteCompany(row.getCells()[0].value)
+                          .then((value) {
+                        if (value) {
+                          _onOptionChanged(
+                            listavistaempresa[0],
+                          );
+                        }
+                      });
+                    },
+                    icon: const Icon(
+                      Icons.remove_circle,
+                      color: Colors.red,
                     ),
-                    const SizedBox(width: 5),
-                    IconButton(
-                      onPressed: () {
-                        _homeProvider
-                            .deleteCompany(row.getCells()[0].value)
-                            .then((value) {
-                          if (value) {
-                            _onOptionChanged(
-                              listavistaempresa[0],
-                            );
-                          }
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.remove_circle,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ],
-                )
-              : Text(e.value.toString()));
+                  ),
+                ],
+              )
+            : Text(
+                e.value.toString(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+      );
     }).toList());
   }
 }

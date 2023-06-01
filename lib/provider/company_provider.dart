@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_desktop_app/constants/constants.dart';
 
-class HomeProvider extends ChangeNotifier {
+class HomeCompanyProvider extends ChangeNotifier {
   String _lockedOption = listaventanas[0];
 
   Stream<String> get lockedOption async* {

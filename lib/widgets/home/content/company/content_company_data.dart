@@ -6,11 +6,11 @@ import 'package:my_desktop_app/widgets/widget.dart';
 
 import '../../../../models/models.dart';
 
-class HomeContentEmpresaData extends StatelessWidget {
-  final HomeProvider homeProvider;
+class ContentCompanyData extends StatelessWidget {
+  final HomeCompanyProvider homeProvider;
   final Function onOptionChanged;
 
-  const HomeContentEmpresaData({
+  const ContentCompanyData({
     super.key,
     required this.homeProvider,
     required this.onOptionChanged,
@@ -25,16 +25,7 @@ class HomeContentEmpresaData extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
           if (snapshot.data! == companiesDefault) {
-            return const Center(
-              child: Text(
-                'ERROR EN LA RED :(',
-                style: TextStyle(
-                  color: AppTheme.primary,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            );
+            return const CustomErrorMessage();
           } else {
             CompanyDataSource companyDataSource = CompanyDataSource(
               companyData: snapshot.data!,
@@ -44,7 +35,7 @@ class HomeContentEmpresaData extends StatelessWidget {
 
             return Column(
               children: [
-                HomeButtonOption(
+                ButtonCompanyOption(
                   onOptionChanged: onOptionChanged,
                   content: 'Añadir Empresa',
                   option: listavistaempresa[1],

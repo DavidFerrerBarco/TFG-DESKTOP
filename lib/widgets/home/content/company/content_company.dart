@@ -4,14 +4,15 @@ import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
 import 'package:provider/provider.dart';
 
-class HomeContentEmpresas extends StatelessWidget {
-  const HomeContentEmpresas({
+class ContentCompany extends StatelessWidget {
+  const ContentCompany({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    final HomeProvider homeProvider = Provider.of<HomeProvider>(context);
+    final HomeCompanyProvider homeProvider =
+        Provider.of<HomeCompanyProvider>(context);
 
     void onCompanyChanged(String newCompanyOption) {
       homeProvider.onLockedCompanyChanged(newCompanyOption);
@@ -19,12 +20,12 @@ class HomeContentEmpresas extends StatelessWidget {
 
     Widget companyView(String vista) {
       if (vista == listavistaempresa[0]) {
-        return HomeContentEmpresaData(
+        return ContentCompanyData(
           homeProvider: homeProvider,
           onOptionChanged: onCompanyChanged,
         );
       } else if (vista == listavistaempresa[1]) {
-        return HomeContentEmpresaAddPut(
+        return ContentCompanyAddPut(
           homeProvider: homeProvider,
           onOptionChanged: onCompanyChanged,
         );

@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
-import '../../widget.dart';
+import '../../../../widget.dart';
 
-class HomeButtonOption extends StatelessWidget {
+class ButtonNewOption extends StatelessWidget {
   final Function onOptionChanged;
   final String content;
   final String option;
-  final HomeProvider homeProvider;
+  final NewsProvider newsProvider;
 
-  const HomeButtonOption({
+  const ButtonNewOption({
     super.key,
     required this.onOptionChanged,
     required this.content,
     required this.option,
-    required this.homeProvider,
+    required this.newsProvider,
   });
 
   @override
@@ -24,7 +24,7 @@ class HomeButtonOption extends StatelessWidget {
       alignment: Alignment.centerRight,
       child: Padding(
           padding: const EdgeInsets.all(10),
-          child: HomeContentButton(
+          child: NewsButton(
             content: content,
             color: AppTheme.primary,
             borderColor: AppTheme.shadowGreen,
@@ -33,7 +33,7 @@ class HomeButtonOption extends StatelessWidget {
             width: 250,
             onOptionChanged: onOptionChanged,
             option: option,
-            homeProvider: homeProvider,
+            newsProvider: newsProvider,
           )),
     );
   }

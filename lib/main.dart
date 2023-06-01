@@ -9,6 +9,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const AppState());
 }
+
 class AppState extends StatelessWidget {
   const AppState({super.key});
 
@@ -20,9 +21,15 @@ class AppState extends StatelessWidget {
           create: (_) => SplashProvider(),
         ),
         ChangeNotifierProvider(
-          create: (_) => HomeProvider(),
+          create: (_) => HomeCompanyProvider(),
         ),
-      ], 
+        ChangeNotifierProvider(
+          create: (_) => NewsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => LoginProvider(),
+        ),
+      ],
       child: const MyApp(),
     );
   }
@@ -36,11 +43,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Employee Diary',
-      initialRoute: 'home',
+      initialRoute: 'login',
       routes: {
         'login': (_) => const LoginScreen(),
-        'home': (_) => const HomeScreen(),
-        'splash':(_) => const SplashScreen(),
+        'homedeveloper': (_) => const HomeDeveloperScreen(),
+        'splash': (_) => const SplashScreen(),
+        'select': (_) => const SelectorScreen(),
+        'homeadmin': (_) => const HomeAdminScreen(),
       },
       theme: AppTheme.lightTheme,
     );

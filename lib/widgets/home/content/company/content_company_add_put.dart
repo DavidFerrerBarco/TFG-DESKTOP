@@ -4,14 +4,13 @@ import 'package:my_desktop_app/constants/constants.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
-import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
-class HomeContentEmpresaAddPut extends StatelessWidget {
-  final HomeProvider homeProvider;
+class ContentCompanyAddPut extends StatelessWidget {
+  final HomeCompanyProvider homeProvider;
   final Function onOptionChanged;
 
-  const HomeContentEmpresaAddPut({
+  const ContentCompanyAddPut({
     super.key,
     required this.homeProvider,
     required this.onOptionChanged,
@@ -19,8 +18,6 @@ class HomeContentEmpresaAddPut extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeProvider homeProvider = Provider.of<HomeProvider>(context);
-
     final GlobalKey<FormState> myCompanyFormKey = GlobalKey<FormState>();
     final Map<String, dynamic> formValues = {
       'name': '',
@@ -48,7 +45,7 @@ class HomeContentEmpresaAddPut extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          HomeButtonOption(
+          ButtonCompanyOption(
             onOptionChanged: onOptionChanged,
             content: 'Volver',
             option: listavistaempresa[0],
@@ -146,37 +143,38 @@ class HomeContentEmpresaAddPut extends StatelessWidget {
                         ),
                         const SizedBox(height: 50),
                         ElevatedButton(
-                            onPressed: () {
-                              homeProvider.addCompanyName(name.text);
-                              homeProvider.addCompanyAddress(address.text);
+                          onPressed: () {
+                            homeProvider.addCompanyName(name.text);
+                            homeProvider.addCompanyAddress(address.text);
 
-                              if (create) {
-                                homeProvider.postCompany().then((value) {
-                                  if (value) {
-                                    homeProvider.resetCompanyForm();
-                                    onOptionChanged(listavistaempresa[0]);
-                                  } else {}
-                                });
-                              } else {
-                                homeProvider.putCompany().then((value) {
-                                  if (value) {
-                                    homeProvider.resetCompanyForm();
-                                    onOptionChanged(listavistaempresa[0]);
-                                  } else {}
-                                });
-                              }
-                            },
-                            style:
-                                AppTheme.lightTheme.elevatedButtonTheme.style,
-                            child: SizedBox(
-                              width: double.infinity,
-                              height: 45,
-                              child: Center(
-                                child: Text(create ? "Crear" : "Editar",
-                                    style: AppTheme
-                                        .lightTheme.textTheme.labelLarge),
+                            if (create) {
+                              homeProvider.postCompany().then((value) {
+                                if (value) {
+                                  homeProvider.resetCompanyForm();
+                                  onOptionChanged(listavistaempresa[0]);
+                                } else {}
+                              });
+                            } else {
+                              homeProvider.putCompany().then((value) {
+                                if (value) {
+                                  homeProvider.resetCompanyForm();
+                                  onOptionChanged(listavistaempresa[0]);
+                                } else {}
+                              });
+                            }
+                          },
+                          style: AppTheme.lightTheme.elevatedButtonTheme.style,
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 45,
+                            child: Center(
+                              child: Text(
+                                create ? "Crear" : "Editar",
+                                style: AppTheme.lightTheme.textTheme.labelLarge,
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

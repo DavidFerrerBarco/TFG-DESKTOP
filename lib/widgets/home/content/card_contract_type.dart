@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_desktop_app/provider/home_provider.dart';
+import 'package:my_desktop_app/provider/company_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
 class CardContractType extends StatelessWidget {
@@ -7,16 +7,16 @@ class CardContractType extends StatelessWidget {
     super.key,
     required this.homeProvider,
     required this.name,
-    required this.address, 
+    required this.address,
     required this.snapshot,
     required this.index,
   });
 
-  final HomeProvider homeProvider;
+  final HomeCompanyProvider homeProvider;
   final TextEditingController name;
   final TextEditingController address;
   final AsyncSnapshot<List<int>> snapshot;
-  final int index; 
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +36,10 @@ class CardContractType extends StatelessWidget {
             iconSize: 18,
             splashRadius: 18,
             onPressed: () => homeProvider.removeHourToTheList(
-              name.text, 
+              name.text,
               address.text,
               snapshot.data![index],
-            ), 
+            ),
             icon: const Icon(
               Icons.highlight_remove_rounded,
               color: Colors.white,
