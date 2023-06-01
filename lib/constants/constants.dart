@@ -2,9 +2,17 @@ import 'package:my_desktop_app/models/models.dart';
 
 const developercompany = "Employee Diary";
 
-final List<String> listaventanas = [
+final List<String> listaventanasdeveloper = [
   'EMPRESAS',
   'NOTICIAS',
+  'CERRAR SESIÓN',
+];
+
+final List<String> listaventanasadmin = [
+  'EMPLEADOS',
+  'ANUNCIOS',
+  'HORARIOS',
+  'TAREAS',
   'ESTADÍSTICAS',
   'CERRAR SESIÓN',
 ];

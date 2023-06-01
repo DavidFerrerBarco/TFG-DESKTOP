@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_desktop_app/constants/constants.dart';
 
 class HomeCompanyProvider extends ChangeNotifier {
-  String _lockedOption = listaventanas[0];
+  String _lockedOption = listaventanasdeveloper[0];
 
   Stream<String> get lockedOption async* {
     yield _lockedOption;

@@ -14,16 +14,16 @@ class HomeDeveloperScreen extends StatelessWidget {
 
     void onLockedChanged(String newOption) {
       homeProvider.onLockedChanged(newOption);
-      if (newOption == listaventanas.last) {
+      if (newOption == listaventanasdeveloper.last) {
         Navigator.pushReplacementNamed(context, 'login');
-        homeProvider.onLockedChanged(listaventanas[0]);
+        homeProvider.onLockedChanged(listaventanasdeveloper[0]);
         homeProvider.onLockedCompanyChanged(listavistaempresa[0]);
       }
     }
 
     return StreamBuilder(
       stream: homeProvider.lockedOption,
-      initialData: listaventanas[0],
+      initialData: listaventanasdeveloper[0],
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return Scaffold(
@@ -35,9 +35,11 @@ class HomeDeveloperScreen extends StatelessWidget {
                   HomeDrawer(
                     lockedOption: snapshot.data!,
                     onLockedChanged: onLockedChanged,
+                    lista: listaventanasdeveloper,
                   ),
                   HomeContent(
                     lockedOption: snapshot.data!,
+                    onLockedOption: onLockedChanged,
                   ),
                 ],
               ),

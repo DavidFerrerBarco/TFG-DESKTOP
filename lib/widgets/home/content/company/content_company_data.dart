@@ -9,11 +9,13 @@ import '../../../../models/models.dart';
 class ContentCompanyData extends StatelessWidget {
   final HomeCompanyProvider homeProvider;
   final Function onOptionChanged;
+  final Function onLockedOption;
 
   const ContentCompanyData({
     super.key,
     required this.homeProvider,
     required this.onOptionChanged,
+    required this.onLockedOption,
   });
 
   @override
@@ -31,6 +33,7 @@ class ContentCompanyData extends StatelessWidget {
               companyData: snapshot.data!,
               homeProvider: homeProvider,
               onOptionChanged: onOptionChanged,
+              onLockedOption: onLockedOption,
             );
 
             return Column(

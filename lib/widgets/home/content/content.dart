@@ -4,14 +4,29 @@ import '../../widget.dart';
 
 class HomeContent extends StatelessWidget {
   final String lockedOption;
+  final Function onLockedOption;
 
-  const HomeContent({super.key, required this.lockedOption});
+  const HomeContent({
+    super.key,
+    required this.lockedOption,
+    required this.onLockedOption,
+  });
 
   Widget contentVista() {
-    if (lockedOption == listaventanas[0]) {
-      return const ContentCompany();
-    } else if (lockedOption == listaventanas[1]) {
+    if (lockedOption == listaventanasdeveloper[0]) {
+      return ContentCompany(
+        onLockedOption: onLockedOption,
+      );
+    } else if (lockedOption == listaventanasdeveloper[1]) {
       return const ContentNews();
+    } else if (lockedOption == listaventanasadmin[0]) {
+      return Container(color: Colors.yellow);
+    } else if (lockedOption == listaventanasadmin[1]) {
+      return Container(color: Colors.orange);
+    } else if (lockedOption == listaventanasadmin[2]) {
+      return Container(color: Colors.green);
+    } else if (lockedOption == listaventanasadmin[3]) {
+      return Container(color: Colors.red);
     } else {
       return Container(color: Colors.blue);
     }

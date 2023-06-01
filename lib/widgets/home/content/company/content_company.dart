@@ -5,8 +5,11 @@ import 'package:my_desktop_app/widgets/widget.dart';
 import 'package:provider/provider.dart';
 
 class ContentCompany extends StatelessWidget {
+  final Function onLockedOption;
+
   const ContentCompany({
     super.key,
+    required this.onLockedOption,
   });
 
   @override
@@ -23,6 +26,7 @@ class ContentCompany extends StatelessWidget {
         return ContentCompanyData(
           homeProvider: homeProvider,
           onOptionChanged: onCompanyChanged,
+          onLockedOption: onLockedOption,
         );
       } else if (vista == listavistaempresa[1]) {
         return ContentCompanyAddPut(

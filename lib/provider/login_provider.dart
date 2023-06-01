@@ -23,6 +23,19 @@ class LoginProvider extends ChangeNotifier {
 
   // ----------------------------------------------------------
 
+  bool _isdeveloper = false;
+
+  Stream<bool> get isdeveloper async* {
+    yield _isdeveloper;
+  }
+
+  void setIsDeleveoper(bool newDeveloperValue) {
+    _isdeveloper = newDeveloperValue;
+    notifyListeners();
+  }
+
+  // ----------------------------------------------------------
+
   Employee _employee = defaultemployee;
 
   Stream<Employee> get employee async* {

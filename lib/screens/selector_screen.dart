@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class SelectorScreen extends StatelessWidget {
   const SelectorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final LoginProvider loginProvider = Provider.of<LoginProvider>(context);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -24,6 +27,7 @@ class SelectorScreen extends StatelessWidget {
             const SizedBox(height: 100),
             ElevatedButton(
               onPressed: () {
+                loginProvider.setIsDeleveoper(true);
                 Navigator.pushNamed(context, 'homedeveloper');
               },
               child: const Padding(
@@ -41,6 +45,7 @@ class SelectorScreen extends StatelessWidget {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
+                loginProvider.setIsDeleveoper(false);
                 Navigator.pushNamed(context, 'homeadmin');
               },
               child: const Padding(

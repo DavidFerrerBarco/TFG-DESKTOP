@@ -83,9 +83,11 @@ class CompanyDataSource extends DataGridSource {
     required List<Company> companyData,
     required HomeCompanyProvider homeProvider,
     required Function onOptionChanged,
+    required Function onLockedOption,
   }) {
     _homeProvider = homeProvider;
     _onOptionChanged = onOptionChanged;
+    _onLockedOption = onLockedOption;
     _companyData = companyData
         .map<DataGridRow>((e) => DataGridRow(cells: [
               DataGridCell<String>(
@@ -118,6 +120,8 @@ class CompanyDataSource extends DataGridSource {
 
   late Function _onOptionChanged;
 
+  late Function _onLockedOption;
+
   @override
   List<DataGridRow> get rows => _companyData;
 
@@ -131,6 +135,16 @@ class CompanyDataSource extends DataGridSource {
         child: e.columnName == 'edit'
             ? Row(
                 children: [
+                  IconButton(
+                    onPressed: () {
+                      _onLockedOption(listaventanasadmin[0]);
+                    },
+                    icon: const Icon(
+                      Icons.person_search,
+                      color: AppTheme.primary,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
                   IconButton(
                     onPressed: () {
                       _homeProvider.setId(row.getCells()[0].value);
