@@ -88,14 +88,13 @@ class HomeEmployeeProvider extends ChangeNotifier {
   void addEmployeeDataPost(String name, String dni, int contract) {
     setEmployeeName(name);
     setEmployeeDni(dni);
-    setEmployeeContract(contract);
+    _employeecontract = contract;
   }
 
   void resetEmployeeForm() {
     _employeename = '';
     _employeedni = '';
     _employeecontract = 0;
-    notifyListeners();
   }
 
   // -------------------------------------------
@@ -162,7 +161,7 @@ class HomeEmployeeProvider extends ChangeNotifier {
 
   // --------------------------------------------
   Future<bool> putAdmin(String id, bool newAdminValue) async {
-    var url = Uri.http(baseUrl, 'api/employee/$id');
+    var url = Uri.http(baseUrl, 'api/employee/admin/$id');
 
     try {
       final response = await http.put(
@@ -172,6 +171,53 @@ class HomeEmployeeProvider extends ChangeNotifier {
         },
         body: jsonEncode({
           "admin": newAdminValue,
+        }),
+      );
+
+      return response.statusCode == 200;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  // ---------------------------------------------------
+
+  Future<bool> postEmployee(bool admin, int selectedContract) async {
+    var url = Uri.http(baseUrl, 'api/employee');
+    try {
+      final response = await http.post(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          "name": _employeename,
+          "DNI": _employeedni,
+          "company": _lockedCompany,
+          "contract": selectedContract,
+          "admin": admin,
+        }),
+      );
+      return response.statusCode == 201;
+    } catch (error) {
+      return false;
+    }
+  }
+  //--------------------------------------------
+
+  Future<bool> putEmployee(int selectedContract) async {
+    var url = Uri.http(baseUrl, 'api/employee/$_employeeid');
+    try {
+      final response = await http.put(
+        url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          "name": _employeename,
+          "DNI": _employeedni,
+          "company": _lockedCompany,
+          "contract": selectedContract,
         }),
       );
 
