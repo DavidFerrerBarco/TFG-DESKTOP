@@ -1,47 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/constants/constants.dart';
-import 'package:my_desktop_app/models/news.dart';
+import 'package:my_desktop_app/models/models.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
-import 'package:my_desktop_app/widgets/home/grid/grid_data_news.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
+import 'package:provider/provider.dart';
 
-class ContentNewData extends StatelessWidget {
-  final NewsProvider newsProvider;
+class ContentEmployeesData extends StatelessWidget {
+  final HomeEmployeeProvider employeeProvider;
+  final String company;
   final Function onOptionChanged;
 
-  const ContentNewData({
+  const ContentEmployeesData({
     super.key,
-    required this.newsProvider,
+    required this.employeeProvider,
+    required this.company,
     required this.onOptionChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: newsProvider.newsData,
-      initialData: const <News>[],
+      stream: employeeProvider.employeesData,
+      initialData: const <Employee>[],
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done &&
             snapshot.hasData) {
-          if (snapshot.data! == newsDefault) {
+          if (snapshot.data! == [defaultemployee]) {
             return const CustomErrorMessage();
           } else {
-            NewsDataSource newsDataSource = NewsDataSource(
-              newsData: snapshot.data!,
-              newsProvider: newsProvider,
+            final LoginProvider loginProvider =
+                Provider.of<LoginProvider>(context);
+
+            EmployeeDataSource employeeDataSource = EmployeeDataSource(
+              employeesData: snapshot.data!,
+              employeeProvider: employeeProvider,
+              loginProvider: loginProvider,
               onOptionChanged: onOptionChanged,
             );
 
             return Column(
               children: [
-                ButtonNewOption(
+                ButtonEmployeeOption(
                   onOptionChanged: onOptionChanged,
-                  content: 'Añadir Noticia',
-                  option: listavistanoticias[1],
-                  newsProvider: newsProvider,
+                  content: "Añadir Empleado",
+                  option: listavistaempleado[1],
+                  employeeProvider: employeeProvider,
                 ),
-                GridDataNews(newsDataSource: newsDataSource),
+                GridDataEmployee(employeeDataSource: employeeDataSource),
               ],
             );
           }

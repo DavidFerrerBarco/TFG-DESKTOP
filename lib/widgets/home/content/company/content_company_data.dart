@@ -3,6 +3,7 @@ import 'package:my_desktop_app/constants/constants.dart';
 import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:my_desktop_app/widgets/widget.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../models/models.dart';
 
@@ -29,9 +30,13 @@ class ContentCompanyData extends StatelessWidget {
           if (snapshot.data! == companiesDefault) {
             return const CustomErrorMessage();
           } else {
+            final HomeEmployeeProvider employeeProvider =
+                Provider.of<HomeEmployeeProvider>(context);
+
             CompanyDataSource companyDataSource = CompanyDataSource(
               companyData: snapshot.data!,
               homeProvider: homeProvider,
+              employeeProvider: employeeProvider,
               onOptionChanged: onOptionChanged,
               onLockedOption: onLockedOption,
             );

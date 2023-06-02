@@ -10,6 +10,11 @@ export 'package:my_desktop_app/widgets/home/content/company/content_company_data
 export 'package:my_desktop_app/widgets/home/content/company/content_company.dart';
 export 'package:my_desktop_app/widgets/home/content/content_title.dart';
 export 'package:my_desktop_app/widgets/home/content/content.dart';
+export 'package:my_desktop_app/widgets/home/content/employee/button/employee_add_edit.dart';
+export 'package:my_desktop_app/widgets/home/content/employee/button/employee_button.dart';
+export 'package:my_desktop_app/widgets/home/content/employee/content_employee_add_put.dart';
+export 'package:my_desktop_app/widgets/home/content/employee/content_employee_data.dart';
+export 'package:my_desktop_app/widgets/home/content/employee/content_employee.dart';
 export 'package:my_desktop_app/widgets/home/content/news/button/news_add_edit.dart';
 export 'package:my_desktop_app/widgets/home/content/news/button/news_button.dart';
 export 'package:my_desktop_app/widgets/home/content/news/content_news_data.dart';
@@ -19,5 +24,6 @@ export 'package:my_desktop_app/widgets/home/drawer/drawer_item.dart';
 export 'package:my_desktop_app/widgets/home/drawer/drawer.dart';
 export 'package:my_desktop_app/widgets/home/drawer/profile_data.dart';
 export 'package:my_desktop_app/widgets/home/grid/grid_data_companies.dart';
+export 'package:my_desktop_app/widgets/home/grid/grid_data_employees.dart';
 export 'package:my_desktop_app/widgets/login/login_container.dart';
 export 'package:my_desktop_app/widgets/login/login_form.dart';

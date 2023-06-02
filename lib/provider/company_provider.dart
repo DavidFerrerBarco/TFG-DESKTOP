@@ -129,18 +129,22 @@ class HomeCompanyProvider extends ChangeNotifier {
   Future<bool> postCompany() async {
     var url = Uri.http(baseUrl, 'api/company');
     try {
-      final response = await http.post(
-        url,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          "name": _companyname,
-          "address": _companyaddress,
-          "contractTypes": _listahoras
-        }),
-      );
-      return response.statusCode == 201;
+      if (_listahoras.isNotEmpty) {
+        final response = await http.post(
+          url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: jsonEncode({
+            "name": _companyname,
+            "address": _companyaddress,
+            "contractTypes": _listahoras
+          }),
+        );
+        return response.statusCode == 201;
+      } else {
+        return false;
+      }
     } catch (error) {
       return false;
     }

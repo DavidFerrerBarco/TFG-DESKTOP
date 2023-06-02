@@ -28,9 +28,7 @@ class ContentNews extends StatelessWidget {
           onOptionChanged: onNewsChanged,
         );
       } else {
-        return Container(
-          color: Colors.black,
-        );
+        return Container(color: Colors.black);
       }
     }
 

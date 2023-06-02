@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/provider/provider.dart';
+import 'package:my_desktop_app/theme/app_theme.dart';
 
-class HomeDrawerItem extends StatefulWidget {
+class EmployeeButton extends StatefulWidget {
   final String content;
   final Color color;
   final Color borderColor;
-  final String lockedOption;
-  final Function onLockedChange;
   final double offsetX;
   final double offsetY;
+  final double width;
+  final Function onOptionChanged;
+  final String option;
+  final HomeEmployeeProvider employeeProvider;
 
-  const HomeDrawerItem({
+  const EmployeeButton({
     super.key,
     required this.content,
     required this.color,
     required this.borderColor,
-    required this.lockedOption,
-    required this.onLockedChange,
     required this.offsetX,
     required this.offsetY,
+    required this.width,
+    required this.onOptionChanged,
+    required this.option,
+    required this.employeeProvider,
   });
 
   @override
-  State<HomeDrawerItem> createState() => _HomeDrawerItemState();
+  State<EmployeeButton> createState() => _EmployeeButtonState();
 }
 
-class _HomeDrawerItemState extends State<HomeDrawerItem> {
+class _EmployeeButtonState extends State<EmployeeButton> {
   bool isHovered = false;
   void onHovered(bool hovered) => setState(() {
         isHovered = hovered;
@@ -33,7 +39,7 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
   @override
   Widget build(BuildContext context) {
     Offset setOffsetValue() {
-      return widget.content == widget.lockedOption || isHovered
+      return isHovered
           ? const Offset(0, 0)
           : Offset(widget.offsetX, widget.offsetY);
     }
@@ -41,12 +47,17 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
     Offset offset = setOffsetValue();
 
     return TextButton(
-      onPressed: () => widget.onLockedChange(widget.content),
+      onPressed: () {
+        widget.employeeProvider.isCreate(true);
+        widget.employeeProvider.resetEmployeeForm();
+        widget.onOptionChanged(widget.option);
+      },
       child: Container(
         height: 60,
+        width: widget.width,
         decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white,
+              color: AppTheme.shadowGreen,
               width: 2,
             ),
             borderRadius: BorderRadius.circular(20),
@@ -69,7 +80,6 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
                 child: Text(
                   widget.content,
                   style: const TextStyle(color: Colors.white),
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ),

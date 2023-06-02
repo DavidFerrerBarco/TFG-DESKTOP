@@ -82,10 +82,12 @@ class CompanyDataSource extends DataGridSource {
   CompanyDataSource({
     required List<Company> companyData,
     required HomeCompanyProvider homeProvider,
+    required HomeEmployeeProvider employeeProvider,
     required Function onOptionChanged,
     required Function onLockedOption,
   }) {
     _homeProvider = homeProvider;
+    _employeeProvider = employeeProvider;
     _onOptionChanged = onOptionChanged;
     _onLockedOption = onLockedOption;
     _companyData = companyData
@@ -118,6 +120,8 @@ class CompanyDataSource extends DataGridSource {
 
   late HomeCompanyProvider _homeProvider;
 
+  late HomeEmployeeProvider _employeeProvider;
+
   late Function _onOptionChanged;
 
   late Function _onLockedOption;
@@ -137,6 +141,8 @@ class CompanyDataSource extends DataGridSource {
                 children: [
                   IconButton(
                     onPressed: () {
+                      _employeeProvider
+                          .setLockedCompany(row.getCells()[1].value);
                       _onLockedOption(listaventanasadmin[0]);
                     },
                     icon: const Icon(

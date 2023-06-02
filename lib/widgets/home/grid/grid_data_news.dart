@@ -16,64 +16,65 @@ class GridDataNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: SfDataGrid(
-      source: newsDataSource,
-      columnWidthMode: ColumnWidthMode.fill,
-      allowSorting: true,
-      allowEditing: true,
-      allowColumnsResizing: true,
-      allowPullToRefresh: true,
-      columns: <GridColumn>[
-        GridColumn(
-          columnName: 'id',
-          label: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            child: const Text('ID'),
+      child: SfDataGrid(
+        source: newsDataSource,
+        columnWidthMode: ColumnWidthMode.fill,
+        allowSorting: true,
+        allowEditing: true,
+        allowColumnsResizing: true,
+        allowPullToRefresh: true,
+        columns: <GridColumn>[
+          GridColumn(
+            columnName: 'id',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text('ID'),
+            ),
+            allowEditing: false,
+            columnWidthMode: ColumnWidthMode.fitByCellValue,
           ),
-          allowEditing: false,
-          columnWidthMode: ColumnWidthMode.fitByCellValue,
-        ),
-        GridColumn(
-          columnName: 'title',
-          label: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            child: const Text(
-              'Title',
+          GridColumn(
+            columnName: 'title',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text(
+                'Title',
+              ),
             ),
           ),
-        ),
-        GridColumn(
-          columnName: 'content',
-          label: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            child: const Text(
-              'Content',
+          GridColumn(
+            columnName: 'content',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text(
+                'Content',
+              ),
             ),
           ),
-        ),
-        GridColumn(
-          columnName: 'date',
-          label: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            child: const Text('Fecha de Creación'),
+          GridColumn(
+            columnName: 'date',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text('Fecha de Creación'),
+            ),
           ),
-        ),
-        GridColumn(
-          columnName: 'edit',
-          label: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            child: const Text(''),
+          GridColumn(
+            columnName: 'edit',
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text(''),
+            ),
+            allowSorting: false,
+            columnWidthMode: ColumnWidthMode.fill,
           ),
-          allowSorting: false,
-          columnWidthMode: ColumnWidthMode.fill,
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }
 
@@ -86,28 +87,30 @@ class NewsDataSource extends DataGridSource {
     _newsProvider = newsProvider;
     _onOptionChanged = onOptionChanged;
     _newsData = newsData
-        .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<String>(
-                columnName: 'id',
-                value: e.id,
-              ),
-              DataGridCell<String>(
-                columnName: 'title',
-                value: e.title,
-              ),
-              DataGridCell<String>(
-                columnName: 'content',
-                value: e.content,
-              ),
-              DataGridCell<String>(
-                columnName: 'date',
-                value: e.date,
-              ),
-              const DataGridCell(
-                columnName: 'edit',
-                value: null,
-              ),
-            ]))
+        .map<DataGridRow>((e) => DataGridRow(
+              cells: [
+                DataGridCell<String>(
+                  columnName: 'id',
+                  value: e.id,
+                ),
+                DataGridCell<String>(
+                  columnName: 'title',
+                  value: e.title,
+                ),
+                DataGridCell<String>(
+                  columnName: 'content',
+                  value: e.content,
+                ),
+                DataGridCell<String>(
+                  columnName: 'date',
+                  value: e.date,
+                ),
+                const DataGridCell(
+                  columnName: 'edit',
+                  value: null,
+                ),
+              ],
+            ))
         .toList();
   }
 

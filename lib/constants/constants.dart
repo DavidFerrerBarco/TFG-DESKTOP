@@ -22,6 +22,11 @@ final List<String> listavistaempresa = [
   'CREATE_EDIT',
 ];
 
+final List<String> listavistaempleado = [
+  'DATA',
+  'CREATE_EDIT',
+];
+
 final List<String> listavistanoticias = [
   'DATA',
   'CREATE_EDIT',
@@ -31,9 +36,10 @@ const casa = '192.168.0.11';
 const trabajo = '10.0.1.198';
 const baseUrl = '$casa:3000';
 
-final List<Company> companiesDefault = <Company>[
-  Company(id: '', name: '', address: '', contractTypes: <int>[], v: 0),
-];
+final List<Company> companiesDefault = <Company>[companydefault];
+
+final Company companydefault =
+    Company(id: '', name: '', address: '', contractTypes: <int>[], v: 0);
 
 final List<News> newsDefault = <News>[
   News(id: '', title: '', content: '', date: '', v: 0),

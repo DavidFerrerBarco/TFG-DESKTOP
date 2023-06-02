@@ -12,28 +12,32 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final SplashProvider splashProvider = Provider.of<SplashProvider>(context);
     final LoginProvider loginProvider = Provider.of<LoginProvider>(context);
+    final HomeEmployeeProvider employeeProvider =
+        Provider.of<HomeEmployeeProvider>(context);
 
     return StreamBuilder(
-        stream: splashProvider.loading,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            SchedulerBinding.instance.addPostFrameCallback((_) {
-              loginProvider.employee.listen((employee) {
-                if (employee.company == developercompany) {
-                  Navigator.pushReplacementNamed(context, 'select');
-                } else {
-                  Navigator.pushReplacementNamed(context, 'homeadmin');
-                }
-              });
+      stream: splashProvider.loading,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            loginProvider.employee.listen((employee) {
+              if (employee.company == developercompany) {
+                Navigator.pushReplacementNamed(context, 'select');
+              } else {
+                employeeProvider.setLockedCompany(employee.company);
+                Navigator.pushReplacementNamed(context, 'homeadmin');
+              }
             });
-          }
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: AppTheme.primary,
-              ),
+          });
+        }
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(
+              color: AppTheme.primary,
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }

@@ -20,7 +20,7 @@ class HomeAdminScreen extends StatelessWidget {
       }
     }
 
-    return StreamBuilder<Object>(
+    return StreamBuilder<String>(
       stream: homeProvider.lockedOption,
       initialData: listaventanasadmin[0],
       builder: (context, snapshot) {
@@ -32,12 +32,12 @@ class HomeAdminScreen extends StatelessWidget {
               child: Row(
                 children: [
                   HomeDrawer(
-                    lockedOption: snapshot.data! as String,
+                    lockedOption: snapshot.data!,
                     onLockedChanged: onLockedChanged,
                     lista: listaventanasadmin,
                   ),
                   HomeContent(
-                    lockedOption: snapshot.data! as String,
+                    lockedOption: snapshot.data!,
                     onLockedOption: onLockedChanged,
                   ),
                 ],

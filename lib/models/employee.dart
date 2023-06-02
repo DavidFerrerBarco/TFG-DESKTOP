@@ -10,7 +10,7 @@ class Employee {
   bool admin;
   String email;
   int v;
-  String token;
+  String? token;
 
   Employee({
     required this.id,
@@ -22,7 +22,7 @@ class Employee {
     required this.admin,
     required this.email,
     required this.v,
-    required this.token,
+    this.token,
   });
 
   factory Employee.fromJson(String str) => Employee.fromMap(json.decode(str));
