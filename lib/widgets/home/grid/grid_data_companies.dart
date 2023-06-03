@@ -39,7 +39,7 @@ class GridDataCompanies extends StatelessWidget {
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text('Nombre'),
+              child: const Text('NOMBRE'),
             ),
           ),
           GridColumn(
@@ -48,7 +48,7 @@ class GridDataCompanies extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
               child: const Text(
-                'Dirección',
+                'DIRECCIÓN',
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -58,7 +58,7 @@ class GridDataCompanies extends StatelessWidget {
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text('Tipos de Contratos'),
+              child: const Text('CONTRATOS'),
             ),
             allowSorting: false,
           ),

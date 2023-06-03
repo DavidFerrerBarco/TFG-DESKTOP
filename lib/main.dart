@@ -32,6 +32,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => HomeEmployeeProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AnnouncementProvider(),
+        ),
       ],
       child: const MyApp(),
     );

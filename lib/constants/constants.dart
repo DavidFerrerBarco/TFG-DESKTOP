@@ -32,6 +32,11 @@ final List<String> listavistanoticias = [
   'CREATE_EDIT',
 ];
 
+final List<String> listavistaanuncios = [
+  'DATA',
+  'CREATE_EDIT',
+];
+
 const casa = '192.168.0.11';
 const trabajo = '10.0.1.198';
 const baseUrl = '$casa:3000';
@@ -61,4 +66,13 @@ final Employee defaultemployee = Employee(
 final CustomError defaulterror = CustomError(
   id: '',
   name: '',
+);
+
+final Announcement defaultannouncement = Announcement(
+  id: '',
+  title: '',
+  content: '',
+  company: '',
+  date: '',
+  v: 0,
 );

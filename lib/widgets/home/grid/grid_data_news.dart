@@ -40,7 +40,7 @@ class GridDataNews extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
               child: const Text(
-                'Title',
+                'TÍTULO',
               ),
             ),
           ),
@@ -50,7 +50,7 @@ class GridDataNews extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
               child: const Text(
-                'Content',
+                'CONTENIDO',
               ),
             ),
           ),
@@ -59,7 +59,7 @@ class GridDataNews extends StatelessWidget {
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text('Fecha de Creación'),
+              child: const Text('FECHA'),
             ),
           ),
           GridColumn(

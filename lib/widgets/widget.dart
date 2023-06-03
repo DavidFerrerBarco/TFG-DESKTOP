@@ -1,3 +1,8 @@
+export 'package:my_desktop_app/widgets/home/content/announcement/button/announcement_add_edit.dart';
+export 'package:my_desktop_app/widgets/home/content/announcement/button/announcement_button.dart';
+export 'package:my_desktop_app/widgets/home/grid/grid_data_announcement.dart';
+export 'package:my_desktop_app/widgets/home/content/announcement/content_announcement_data.dart';
+export 'package:my_desktop_app/widgets/home/content/announcement/content_announcement.dart';
 export 'package:my_desktop_app/widgets/custom_alert_error.dart';
 export 'package:my_desktop_app/widgets/custom_error_message.dart';
 export 'package:my_desktop_app/widgets/custom_icon_avatar.dart';

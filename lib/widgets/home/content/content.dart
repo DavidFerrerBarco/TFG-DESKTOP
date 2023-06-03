@@ -22,7 +22,7 @@ class HomeContent extends StatelessWidget {
     } else if (lockedOption == listaventanasadmin[0]) {
       return const ContentEmployee();
     } else if (lockedOption == listaventanasadmin[1]) {
-      return Container(color: Colors.orange);
+      return const ContentAnnouncement();
     } else if (lockedOption == listaventanasadmin[2]) {
       return Container(color: Colors.green);
     } else if (lockedOption == listaventanasadmin[3]) {

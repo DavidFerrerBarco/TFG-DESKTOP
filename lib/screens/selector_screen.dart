@@ -44,7 +44,7 @@ class SelectorScreen extends StatelessWidget {
                         children: [
                           Icon(Icons.developer_mode),
                           SizedBox(width: 20),
-                          Text("MODO DESARROLADOR")
+                          Text("MODO DESARROLLADOR")
                         ],
                       ),
                     ),

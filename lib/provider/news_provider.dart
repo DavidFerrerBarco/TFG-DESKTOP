@@ -106,7 +106,7 @@ class NewsProvider extends ChangeNotifier {
   Future<bool> postNew() async {
     var url = Uri.http(baseUrl, 'api/news');
     try {
-      final reponse = await http.post(
+      final response = await http.post(
         url,
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ class NewsProvider extends ChangeNotifier {
           "content": _newcontent,
         }),
       );
-      return reponse.statusCode == 201;
+      return response.statusCode == 201;
     } catch (error) {
       return false;
     }

@@ -118,6 +118,9 @@ class ContentEmployeeAddPut extends StatelessWidget {
                                 builder: (context, snapshot) {
                                   if (snapshot.hasData) {
                                     Company company = snapshot.data!;
+                                    if (contract == 0) {
+                                      contract = company.contractTypes[0];
+                                    }
                                     return DropdownButtonFormField(
                                       decoration: const InputDecoration(
                                         enabledBorder: OutlineInputBorder(
