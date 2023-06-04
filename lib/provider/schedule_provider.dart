@@ -185,8 +185,6 @@ class ScheduleProvider extends ChangeNotifier {
           "hoursCount": horasPuestas,
         }),
       );
-
-      print(response.body);
       return response.statusCode == 201;
     } catch (error) {
       return false;

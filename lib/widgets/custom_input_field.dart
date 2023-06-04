@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_desktop_app/provider/schedule_provider.dart';
+import 'package:my_desktop_app/provider/provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
 // ignore: must_be_immutable
@@ -21,6 +21,7 @@ class CustomInputField extends StatefulWidget {
   final int? maxLines;
   final bool? tap;
   final ScheduleProvider? scheduleProvider;
+  final TaskProvider? taskProvider;
 
   CustomInputField({
     super.key,
@@ -40,6 +41,7 @@ class CustomInputField extends StatefulWidget {
     this.maxLines,
     this.tap,
     this.scheduleProvider,
+    this.taskProvider,
   });
 
   @override
@@ -53,7 +55,8 @@ class _CustomInputFieldState extends State<CustomInputField> {
     });
   }
 
-  Future<DateTime?> getDate(ScheduleProvider scheduleProvider) async {
+  Future<DateTime?> getDate(
+      ScheduleProvider? scheduleProvider, TaskProvider? taskProvider) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
@@ -73,7 +76,12 @@ class _CustomInputFieldState extends State<CustomInputField> {
     );
 
     if (pickedDate != null) {
-      scheduleProvider.setNewDay(pickedDate.toString().substring(0, 10));
+      if (scheduleProvider != null) {
+        scheduleProvider.setNewDay(pickedDate.toString().substring(0, 10));
+      }
+      if (taskProvider != null) {
+        taskProvider.setNewDay(pickedDate.toString().substring(0, 10));
+      }
     } else {}
     return null;
   }
@@ -101,7 +109,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
         }
       },
       onTap: () => widget.tap != null && widget.tap == true
-          ? getDate(widget.scheduleProvider!)
+          ? getDate(widget.scheduleProvider, widget.taskProvider)
           : null,
       decoration: InputDecoration(
         filled: true,

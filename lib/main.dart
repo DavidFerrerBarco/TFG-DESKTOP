@@ -38,6 +38,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ScheduleProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => TaskProvider(),
+        ),
       ],
       child: const MyApp(),
     );

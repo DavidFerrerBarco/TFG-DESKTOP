@@ -15,6 +15,10 @@ class HomeDrawerContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = listaOptiones.length > 5 ? 45 : 60;
+
+    double? fontSize = height == 45 ? 18 : null;
+
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -41,6 +45,8 @@ class HomeDrawerContent extends StatelessWidget {
                       onLockedChange: onLockedChange,
                       offsetX: 6,
                       offsetY: -6,
+                      height: height,
+                      fontsize: fontSize,
                     );
                   },
                 )

@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:my_desktop_app/provider/provider.dart';
+import 'package:my_desktop_app/theme/app_theme.dart';
 
-class HomeDrawerItem extends StatefulWidget {
+class TaskButton extends StatefulWidget {
   final String content;
   final Color color;
   final Color borderColor;
-  final String lockedOption;
-  final Function onLockedChange;
   final double offsetX;
   final double offsetY;
-  final double? height;
-  final double? fontsize;
+  final double width;
+  final Function onOptionChanged;
+  final String option;
+  final TaskProvider taskProvider;
 
-  const HomeDrawerItem({
+  const TaskButton({
     super.key,
     required this.content,
     required this.color,
     required this.borderColor,
-    required this.lockedOption,
-    required this.onLockedChange,
     required this.offsetX,
     required this.offsetY,
-    this.height,
-    this.fontsize,
+    required this.width,
+    required this.onOptionChanged,
+    required this.option,
+    required this.taskProvider,
   });
 
   @override
-  State<HomeDrawerItem> createState() => _HomeDrawerItemState();
+  State<TaskButton> createState() => _TaskButtonState();
 }
 
-class _HomeDrawerItemState extends State<HomeDrawerItem> {
+class _TaskButtonState extends State<TaskButton> {
   bool isHovered = false;
   void onHovered(bool hovered) => setState(() {
         isHovered = hovered;
@@ -37,7 +39,7 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
   @override
   Widget build(BuildContext context) {
     Offset setOffsetValue() {
-      return widget.content == widget.lockedOption || isHovered
+      return isHovered
           ? const Offset(0, 0)
           : Offset(widget.offsetX, widget.offsetY);
     }
@@ -45,12 +47,17 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
     Offset offset = setOffsetValue();
 
     return TextButton(
-      onPressed: () => widget.onLockedChange(widget.content),
+      onPressed: () {
+        widget.taskProvider.isCreate(true);
+        widget.taskProvider.resetTaskForm();
+        widget.onOptionChanged(widget.option);
+      },
       child: Container(
-        height: widget.height ?? 60,
+        height: 60,
+        width: widget.width,
         decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white,
+              color: AppTheme.shadowGreen,
               width: 2,
             ),
             borderRadius: BorderRadius.circular(20),
@@ -72,9 +79,7 @@ class _HomeDrawerItemState extends State<HomeDrawerItem> {
               child: Center(
                 child: Text(
                   widget.content,
-                  style:
-                      TextStyle(color: Colors.white, fontSize: widget.fontsize),
-                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
             ),

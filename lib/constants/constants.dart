@@ -2,6 +2,10 @@ import 'package:my_desktop_app/models/models.dart';
 
 const developercompany = "Employee Diary";
 
+const casa = '192.168.0.11';
+const trabajo = '10.0.1.198';
+const baseUrl = '$casa:3000';
+
 final List<String> listaventanasdeveloper = [
   'EMPRESAS',
   'NOTICIAS',
@@ -13,6 +17,7 @@ final List<String> listaventanasadmin = [
   'ANUNCIOS',
   'HORARIOS',
   'TAREAS',
+  'SOLICITUDES',
   'ESTADÍSTICAS',
   'CERRAR SESIÓN',
 ];
@@ -42,17 +47,29 @@ final List<String> listavistahorario = [
   'CREATE_EDIT',
 ];
 
-const casa = '192.168.0.11';
-const trabajo = '10.0.1.198';
-const baseUrl = '$casa:3000';
+final List<String> listavistatareas = [
+  'DATA',
+  'CREATE_EDIT',
+];
 
 final List<Company> companiesDefault = <Company>[companydefault];
 
-final Company companydefault =
-    Company(id: '', name: '', address: '', contractTypes: <int>[], v: 0);
+final Company companydefault = Company(
+  id: '',
+  name: '',
+  address: '',
+  contractTypes: <int>[],
+  v: 0,
+);
 
 final List<News> newsDefault = <News>[
-  News(id: '', title: '', content: '', date: '', v: 0),
+  News(
+    id: '',
+    title: '',
+    content: '',
+    date: '',
+    v: 0,
+  ),
 ];
 
 final Employee defaultemployee = Employee(
@@ -88,6 +105,17 @@ final Schedule defaultschedule = Schedule(
   day: '',
   hours: [],
   hoursCount: 0,
+  v: 0,
+);
+
+final Task defaulttask = Task(
+  id: '',
+  title: '',
+  content: '',
+  day: '',
+  employee: '',
+  status: '',
+  date: '',
   v: 0,
 );
 

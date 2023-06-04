@@ -1,3 +1,9 @@
+export 'package:my_desktop_app/widgets/home/content/task/content_task_add_put.dart';
+export 'package:my_desktop_app/widgets/home/content/task/button/task_add_edit.dart';
+export 'package:my_desktop_app/widgets/home/content/task/button/task_button.dart';
+export 'package:my_desktop_app/widgets/home/content/task/content_task.dart';
+export 'package:my_desktop_app/widgets/home/content/task/content_task_data.dart';
+export 'package:my_desktop_app/widgets/home/grid/grid_data_tasks.dart';
 export 'package:my_desktop_app/widgets/home/content/schedule/content_schedule_add_put.dart';
 export 'package:my_desktop_app/widgets/home/content/schedule/button/schedule_add_edit.dart';
 export 'package:my_desktop_app/widgets/home/content/schedule/button/schedule_button.dart';
