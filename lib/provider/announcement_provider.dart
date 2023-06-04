@@ -104,6 +104,8 @@ class AnnouncementProvider extends ChangeNotifier {
         final AnnouncementModel announcementModel =
             AnnouncementModel.fromJson(response.body);
         yield announcementModel.data;
+      } else {
+        yield <Announcement>[];
       }
     } catch (error) {
       yield [defaultannouncement];

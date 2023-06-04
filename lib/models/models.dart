@@ -1,3 +1,5 @@
+export 'package:my_desktop_app/models/schedule.dart';
+export 'package:my_desktop_app/models/schedule_model.dart';
 export 'package:my_desktop_app/models/announcement.dart';
 export 'package:my_desktop_app/models/announcement_model.dart';
 export 'package:my_desktop_app/models/employee.dart';

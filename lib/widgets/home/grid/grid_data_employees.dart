@@ -20,6 +20,7 @@ class GridDataEmployee extends StatelessWidget {
         source: employeeDataSource,
         columnWidthMode: ColumnWidthMode.lastColumnFill,
         allowSorting: true,
+        allowFiltering: true,
         allowColumnsResizing: true,
         columns: <GridColumn>[
           GridColumn(
@@ -50,6 +51,7 @@ class GridDataEmployee extends StatelessWidget {
           ),
           GridColumn(
             columnName: 'company',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
@@ -59,6 +61,7 @@ class GridDataEmployee extends StatelessWidget {
           GridColumn(
             columnWidthMode: ColumnWidthMode.fill,
             columnName: 'email',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
@@ -67,6 +70,7 @@ class GridDataEmployee extends StatelessWidget {
           ),
           GridColumn(
             columnName: 'contract',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
@@ -88,6 +92,7 @@ class GridDataEmployee extends StatelessWidget {
           ),
           GridColumn(
             allowSorting: false,
+            allowFiltering: false,
             columnName: 'edit',
             label: Container(
               padding: const EdgeInsets.all(8.0),

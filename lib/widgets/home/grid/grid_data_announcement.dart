@@ -175,7 +175,7 @@ class AnnouncementDataSource extends DataGridSource {
                       },
                       icon: const Icon(
                         Icons.remove_circle,
-                        color: Colors.red,
+                        color: AppTheme.redColor,
                       ),
                     ),
                   ],

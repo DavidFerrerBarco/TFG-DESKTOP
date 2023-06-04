@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/constants/constants.dart';
 import 'package:my_desktop_app/models/models.dart';
-import 'package:my_desktop_app/provider/news_provider.dart';
+import 'package:my_desktop_app/provider/schedule_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
-class GridDataNews extends StatelessWidget {
-  final NewsDataSource newsDataSource;
+class GridDataSchedule extends StatelessWidget {
+  final ScheduleDataSource scheduleDataSource;
 
-  const GridDataNews({
+  const GridDataSchedule({
     super.key,
-    required this.newsDataSource,
+    required this.scheduleDataSource,
   });
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: SfDataGrid(
-        source: newsDataSource,
+        source: scheduleDataSource,
         columnWidthMode: ColumnWidthMode.fill,
         allowSorting: true,
-        allowEditing: true,
-        allowColumnsResizing: true,
-        allowPullToRefresh: true,
+        allowFiltering: true,
         columns: <GridColumn>[
           GridColumn(
             columnName: 'id',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
@@ -35,35 +34,48 @@ class GridDataNews extends StatelessWidget {
             columnWidthMode: ColumnWidthMode.fitByCellValue,
           ),
           GridColumn(
-            columnName: 'title',
+            columnName: 'day',
+            allowFiltering: true,
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text('DÍA'),
+            ),
+          ),
+          GridColumn(
+            columnName: 'employee',
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
               child: const Text(
-                'TÍTULO',
+                'EMPLEADO',
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
           GridColumn(
-            columnName: 'content',
+            columnName: 'hours',
+            allowFiltering: false,
+            allowSorting: false,
+            columnWidthMode: ColumnWidthMode.fitByCellValue,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text(
-                'CONTENIDO',
-              ),
+              child: const Text('HORAS'),
             ),
           ),
           GridColumn(
-            columnName: 'date',
+            columnName: 'hoursCount',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
-              child: const Text('FECHA'),
+              child: const Text('Nº HORAS'),
             ),
           ),
           GridColumn(
             columnName: 'edit',
+            allowFiltering: false,
             label: Container(
               padding: const EdgeInsets.all(8.0),
               alignment: Alignment.center,
@@ -78,15 +90,15 @@ class GridDataNews extends StatelessWidget {
   }
 }
 
-class NewsDataSource extends DataGridSource {
-  NewsDataSource({
-    required List<News> newsData,
-    required NewsProvider newsProvider,
+class ScheduleDataSource extends DataGridSource {
+  ScheduleDataSource({
+    required List<Schedule> scheduleData,
+    required ScheduleProvider scheduleProvider,
     required Function onOptionChanged,
   }) {
-    _newsProvider = newsProvider;
+    _scheduleProvider = scheduleProvider;
     _onOptionChanged = onOptionChanged;
-    _newsData = newsData
+    _scheduleData = scheduleData
         .map<DataGridRow>((e) => DataGridRow(
               cells: [
                 DataGridCell<String>(
@@ -94,16 +106,20 @@ class NewsDataSource extends DataGridSource {
                   value: e.id,
                 ),
                 DataGridCell<String>(
-                  columnName: 'title',
-                  value: e.title,
+                  columnName: 'day',
+                  value: e.day,
                 ),
                 DataGridCell<String>(
-                  columnName: 'content',
-                  value: e.content,
+                  columnName: 'employee',
+                  value: e.employee,
                 ),
-                DataGridCell<String>(
-                  columnName: 'date',
-                  value: e.date,
+                DataGridCell<List<String>>(
+                  columnName: 'hours',
+                  value: e.hours,
+                ),
+                DataGridCell<int>(
+                  columnName: 'hoursCount',
+                  value: e.hoursCount,
                 ),
                 const DataGridCell(
                   columnName: 'edit',
@@ -114,14 +130,14 @@ class NewsDataSource extends DataGridSource {
         .toList();
   }
 
-  List<DataGridRow> _newsData = [];
+  List<DataGridRow> _scheduleData = [];
 
-  late NewsProvider _newsProvider;
+  late ScheduleProvider _scheduleProvider;
 
   late Function _onOptionChanged;
 
   @override
-  List<DataGridRow> get rows => _newsData;
+  List<DataGridRow> get rows => _scheduleData;
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
@@ -135,28 +151,12 @@ class NewsDataSource extends DataGridSource {
                 children: [
                   IconButton(
                     onPressed: () {
-                      _newsProvider.addAllNewData(
-                        row.getCells()[0].value,
-                        row.getCells()[1].value,
-                        row.getCells()[2].value,
-                      );
-                      _newsProvider.isCreate(false);
-                      _onOptionChanged(listavistanoticias[1]);
-                    },
-                    icon: const Icon(
-                      Icons.edit,
-                      color: AppTheme.primary,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  IconButton(
-                    onPressed: () {
-                      _newsProvider
-                          .deleteNew(row.getCells()[0].value)
+                      _scheduleProvider
+                          .deleteSchedule(row.getCells()[0].value)
                           .then((value) {
                         if (value) {
-                          _onOptionChanged(listavistanoticias[0]);
-                        }
+                          _onOptionChanged(listavistahorario[0]);
+                        } else {}
                       });
                     },
                     icon: const Icon(
@@ -166,11 +166,17 @@ class NewsDataSource extends DataGridSource {
                   ),
                 ],
               )
-            : Text(
-                e.value.toString(),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
+            : e.columnName == 'day'
+                ? Text(
+                    e.value.toString().substring(0, 10),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  )
+                : Text(
+                    e.value.toString(),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
       );
     }).toList());
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_desktop_app/provider/schedule_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 
 // ignore: must_be_immutable
@@ -18,6 +19,8 @@ class CustomInputField extends StatefulWidget {
   final String formProperty;
   final Map<String, dynamic> formValues;
   final int? maxLines;
+  final bool? tap;
+  final ScheduleProvider? scheduleProvider;
 
   CustomInputField({
     super.key,
@@ -35,6 +38,8 @@ class CustomInputField extends StatefulWidget {
     this.onPressed,
     this.allowPassword = false,
     this.maxLines,
+    this.tap,
+    this.scheduleProvider,
   });
 
   @override
@@ -46,6 +51,31 @@ class _CustomInputFieldState extends State<CustomInputField> {
     setState(() {
       widget.isPassword = !widget.isPassword;
     });
+  }
+
+  Future<DateTime?> getDate(ScheduleProvider scheduleProvider) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2010),
+      lastDate: DateTime(2030),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(primary: AppTheme.primary),
+            textTheme: const TextTheme(
+              bodyLarge: TextStyle(fontSize: 25, color: Colors.black),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (pickedDate != null) {
+      scheduleProvider.setNewDay(pickedDate.toString().substring(0, 10));
+    } else {}
+    return null;
   }
 
   @override
@@ -70,6 +100,9 @@ class _CustomInputFieldState extends State<CustomInputField> {
           return null;
         }
       },
+      onTap: () => widget.tap != null && widget.tap == true
+          ? getDate(widget.scheduleProvider!)
+          : null,
       decoration: InputDecoration(
         filled: true,
         hintText: widget.hintText,
