@@ -1,3 +1,4 @@
+export 'package:my_desktop_app/provider/request_provider.dart';
 export 'package:my_desktop_app/provider/tasks_provider.dart';
 export 'package:my_desktop_app/provider/schedule_provider.dart';
 export 'package:my_desktop_app/provider/announcement_provider.dart';

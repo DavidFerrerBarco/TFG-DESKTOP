@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_desktop_app/provider/provider.dart';
+import 'package:my_desktop_app/provider/request_provider.dart';
 import 'package:my_desktop_app/theme/app_theme.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,9 @@ class AppState extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => TaskProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => RequestProvider(),
         ),
       ],
       child: const MyApp(),

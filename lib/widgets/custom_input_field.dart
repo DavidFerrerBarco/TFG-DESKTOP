@@ -22,6 +22,7 @@ class CustomInputField extends StatefulWidget {
   final bool? tap;
   final ScheduleProvider? scheduleProvider;
   final TaskProvider? taskProvider;
+  final bool? readOnly;
 
   CustomInputField({
     super.key,
@@ -42,6 +43,7 @@ class CustomInputField extends StatefulWidget {
     this.tap,
     this.scheduleProvider,
     this.taskProvider,
+    this.readOnly,
   });
 
   @override
@@ -91,6 +93,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
     final InputDecorationTheme theme = AppTheme.lightTheme.inputDecorationTheme;
 
     return TextFormField(
+      readOnly: widget.readOnly ?? false,
       controller: widget.controller,
       style: const TextStyle(
           color: Colors.black, backgroundColor: Colors.white, fontSize: 18),

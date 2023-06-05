@@ -12,3 +12,5 @@ export 'package:my_desktop_app/models/news.dart';
 export 'package:my_desktop_app/models/new_model.dart';
 export 'package:my_desktop_app/models/company.dart';
 export 'package:my_desktop_app/models/company_model.dart';
+export 'package:my_desktop_app/models/request.dart';
+export 'package:my_desktop_app/models/request_model.dart';

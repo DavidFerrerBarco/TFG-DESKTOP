@@ -52,6 +52,11 @@ final List<String> listavistatareas = [
   'CREATE_EDIT',
 ];
 
+final List<String> listavistasolicitudes = [
+  'DATA',
+  'DETAILS',
+];
+
 final List<Company> companiesDefault = <Company>[companydefault];
 
 final Company companydefault = Company(
@@ -115,6 +120,15 @@ final Task defaulttask = Task(
   day: '',
   employee: '',
   status: '',
+  date: '',
+  v: 0,
+);
+
+final Request defaultrequest = Request(
+  title: '',
+  content: '',
+  employee: '',
+  id: '',
   date: '',
   v: 0,
 );

@@ -28,7 +28,7 @@ class HomeContent extends StatelessWidget {
     } else if (lockedOption == listaventanasadmin[3]) {
       return const ContentTask();
     } else if (lockedOption == listaventanasadmin[4]) {
-      return Container(color: Colors.blue);
+      return const ContentRequests();
     } else {
       return Container(color: Colors.black);
     }
