@@ -5,6 +5,7 @@ class Schedule {
   String employee;
   String day;
   List<String> hours;
+  List<String> realHours;
   int hoursCount;
   int v;
 
@@ -13,6 +14,7 @@ class Schedule {
     required this.employee,
     required this.day,
     required this.hours,
+    required this.realHours,
     required this.hoursCount,
     required this.v,
   });
@@ -24,6 +26,7 @@ class Schedule {
         employee: json["employee"],
         day: json["day"],
         hours: List<String>.from(json["hours"].map((x) => x)),
+        realHours: List<String>.from(json["realHours"].map((x) => x)),
         hoursCount: json["hoursCount"],
         v: json["__v"],
       );
@@ -33,6 +36,7 @@ class Schedule {
         "employee": employee,
         "day": day,
         "hours": List<dynamic>.from(hours.map((x) => x)),
+        "realHours": List<dynamic>.from(hours.map((x) => x)),
         "hoursCount": hoursCount,
         "__v": v,
       };

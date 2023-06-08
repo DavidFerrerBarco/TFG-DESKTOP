@@ -15,37 +15,38 @@ class AppTheme {
       elevation: 0,
     ),
     textTheme: const TextTheme(
-      bodyLarge: TextStyle(
-        fontSize: 40,
-        color: Colors.white,
-        decoration: TextDecoration.none,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 25,
-        color: Colors.white,
-        decoration: TextDecoration.none,
-      ),
-      titleSmall: TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.bold,
-        color: Colors.white,
-      ),
-      labelSmall: TextStyle(
-        fontSize: 15,
-      ),
-      labelMedium: TextStyle(
-        fontSize: 19,
-        color: Colors.black,
-      ),
-      labelLarge: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 30,
-        color: Colors.black
-      )
-    ),
+        bodyLarge: TextStyle(
+          fontSize: 40,
+          color: Colors.white,
+          decoration: TextDecoration.none,
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 25,
+          color: Colors.white,
+          decoration: TextDecoration.none,
+        ),
+        bodySmall: TextStyle(
+          fontSize: 30,
+          color: Colors.white,
+          decoration: TextDecoration.none,
+        ),
+        titleSmall: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+        labelSmall: TextStyle(
+          fontSize: 15,
+        ),
+        labelMedium: TextStyle(
+          fontSize: 19,
+          color: Colors.black,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),
+        titleMedium: TextStyle(fontSize: 30, color: Colors.black)),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(

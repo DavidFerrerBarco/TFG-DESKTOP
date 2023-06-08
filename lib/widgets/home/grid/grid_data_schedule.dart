@@ -65,6 +65,17 @@ class GridDataSchedule extends StatelessWidget {
             ),
           ),
           GridColumn(
+            columnName: 'realHours',
+            allowFiltering: false,
+            allowSorting: false,
+            columnWidthMode: ColumnWidthMode.fitByCellValue,
+            label: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              child: const Text('HORAS REALES'),
+            ),
+          ),
+          GridColumn(
             columnName: 'hoursCount',
             allowFiltering: false,
             label: Container(
@@ -116,6 +127,10 @@ class ScheduleDataSource extends DataGridSource {
                 DataGridCell<List<String>>(
                   columnName: 'hours',
                   value: e.hours,
+                ),
+                DataGridCell<List<String>>(
+                  columnName: 'realHours',
+                  value: e.realHours,
                 ),
                 DataGridCell<int>(
                   columnName: 'hoursCount',

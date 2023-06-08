@@ -109,6 +109,7 @@ final Schedule defaultschedule = Schedule(
   employee: '',
   day: '',
   hours: [],
+  realHours: [],
   hoursCount: 0,
   v: 0,
 );

@@ -1,3 +1,4 @@
+export 'package:my_desktop_app/widgets/home/content/statistics/content_statistics.dart';
 export 'package:my_desktop_app/widgets/home/content/request/button/request_button.dart';
 export 'package:my_desktop_app/widgets/home/content/request/button/request_return.dart';
 export 'package:my_desktop_app/widgets/home/grid/grid_data_requests.dart';
