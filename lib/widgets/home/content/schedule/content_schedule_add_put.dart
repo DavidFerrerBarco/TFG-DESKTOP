@@ -363,71 +363,16 @@ class ContentScheduleAddPut extends StatelessWidget {
                                     const SizedBox(height: 10),
                                     ElevatedButton(
                                       onPressed: () {
-                                        if (day.text != '') {
-                                          DateTime dia =
-                                              DateTime.parse(day.text);
-
-                                          int weekday = dia.weekday;
-
-                                          List<String> listaDias = [];
-
-                                          for (var i = 1; i <= 7; i++) {
-                                            DateTime day = dia.add(
-                                                Duration(days: -weekday + i));
-                                            listaDias.add(day
-                                                .toString()
-                                                .substring(0, 10));
-                                          }
-                                          String dniEmpleado = '';
-                                          int contractEmpleado = 0;
-                                          for (var element in listaEmpleados) {
-                                            if (element.name == employee) {
-                                              dniEmpleado = element.dni;
-                                              contractEmpleado =
-                                                  element.contract;
-                                              break;
-                                            }
-                                          }
-                                          scheduleProvider
-                                              .getHoursJob(
-                                                  dniEmpleado, listaDias)
-                                              .then(
-                                            (value) {
-                                              if (value != -1 ||
-                                                  value == contractEmpleado) {
-                                                int horasPuestas = 0;
-                                                horasPuestas = int.parse(
-                                                        hour2.substring(0, 2)) -
-                                                    int.parse(
-                                                        hour1.substring(0, 2));
-                                                if (horariopartido) {
-                                                  horasPuestas += int.parse(
-                                                          hour4.substring(
-                                                              0, 2)) -
-                                                      int.parse(hour3.substring(
-                                                          0, 2));
-                                                }
-                                                if (horasPuestas + value <=
-                                                    contractEmpleado) {
-                                                  scheduleProvider
-                                                      .postSchedule(dniEmpleado,
-                                                          horasPuestas)
-                                                      .then(
-                                                    (value) {
-                                                      if (value) {
-                                                        scheduleProvider
-                                                            .resetScheduleForm();
-                                                        onOptionChanged(
-                                                          listavistahorario[0],
-                                                        );
-                                                      }
-                                                    },
-                                                  );
-                                                }
-                                              }
-                                            },
-                                          );
-                                        }
+                                        crearHorario(
+                                          day,
+                                          listaEmpleados,
+                                          employee,
+                                          hour2,
+                                          hour1,
+                                          horariopartido,
+                                          hour4,
+                                          hour3,
+                                        );
                                       },
                                       style: AppTheme
                                           .lightTheme.elevatedButtonTheme.style,
@@ -465,5 +410,63 @@ class ContentScheduleAddPut extends StatelessWidget {
         }
       },
     );
+  }
+
+  void crearHorario(
+    TextEditingController day,
+    List<Employee> listaEmpleados,
+    String employee,
+    String hour2,
+    String hour1,
+    bool horariopartido,
+    String hour4,
+    String hour3,
+  ) {
+    if (day.text != '') {
+      DateTime dia = DateTime.parse(day.text);
+
+      int weekday = dia.weekday;
+
+      List<String> listaDias = [];
+
+      for (var i = 1; i <= 7; i++) {
+        DateTime day = dia.add(Duration(days: -weekday + i));
+        listaDias.add(day.toString().substring(0, 10));
+      }
+      String dniEmpleado = '';
+      int contractEmpleado = 0;
+      for (var element in listaEmpleados) {
+        if (element.name == employee) {
+          dniEmpleado = element.dni;
+          contractEmpleado = element.contract;
+          break;
+        }
+      }
+      scheduleProvider.getHoursJob(dniEmpleado, listaDias).then(
+        (value) {
+          if (value != -1 || value == contractEmpleado) {
+            int horasPuestas = 0;
+            horasPuestas = int.parse(hour2.substring(0, 2)) -
+                int.parse(hour1.substring(0, 2));
+            if (horariopartido) {
+              horasPuestas += int.parse(hour4.substring(0, 2)) -
+                  int.parse(hour3.substring(0, 2));
+            }
+            if (horasPuestas + value <= contractEmpleado) {
+              scheduleProvider.postSchedule(dniEmpleado, horasPuestas).then(
+                (value) {
+                  if (value) {
+                    scheduleProvider.resetScheduleForm();
+                    onOptionChanged(
+                      listavistahorario[0],
+                    );
+                  }
+                },
+              );
+            }
+          }
+        },
+      );
+    }
   }
 }

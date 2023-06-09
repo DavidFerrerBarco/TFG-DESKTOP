@@ -20,6 +20,7 @@ class GridDataCompanies extends StatelessWidget {
         source: companyDataSource,
         columnWidthMode: ColumnWidthMode.fill,
         allowSorting: true,
+        allowFiltering: true,
         allowEditing: true,
         allowColumnsResizing: true,
         allowPullToRefresh: true,
@@ -32,6 +33,7 @@ class GridDataCompanies extends StatelessWidget {
               child: const Text('ID'),
             ),
             allowEditing: false,
+            allowFiltering: false,
             columnWidthMode: ColumnWidthMode.fitByCellValue,
           ),
           GridColumn(
@@ -41,6 +43,7 @@ class GridDataCompanies extends StatelessWidget {
               alignment: Alignment.center,
               child: const Text('NOMBRE'),
             ),
+            allowFiltering: true,
           ),
           GridColumn(
             columnName: 'address',
@@ -52,6 +55,7 @@ class GridDataCompanies extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
+            allowFiltering: false,
           ),
           GridColumn(
             columnName: 'contractTypes',
@@ -61,6 +65,7 @@ class GridDataCompanies extends StatelessWidget {
               child: const Text('CONTRATOS'),
             ),
             allowSorting: false,
+            allowFiltering: false,
           ),
           GridColumn(
             columnName: 'edit',
@@ -70,6 +75,7 @@ class GridDataCompanies extends StatelessWidget {
               child: const Text(''),
             ),
             allowSorting: false,
+            allowFiltering: false,
             columnWidthMode: ColumnWidthMode.fill,
           ),
         ],
